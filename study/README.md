@@ -33,4 +33,17 @@
 
 ## Queue
 
+- First In, First Out
+
+### 시간복잡도
+
+* Average
+    * 검색 - O(n)
+    * 삽입 - O(1)
+    * 삭제 - O(1)
+* Worst
+    * 검색 - O(n)
+    * 삽입 - O(1)
+    * 삭제 - O(1)
+
 ## Linked List

@@ -24,7 +24,8 @@ bool Stack::SearchValue(const int n) {
     Stack temp = Stack();
     bool isFound = false;
 
-    for(size_t i = 0; i < mCount; ++i) {
+    size_t stack_len = mCount;
+    for(size_t i = 0; i < stack_len; ++i) {
         int val = Stack::Pop();
         temp.Push(val);
         if(val == n) {
@@ -33,12 +34,11 @@ bool Stack::SearchValue(const int n) {
         }
     }
 
-    if(isFound) {
-        size_t temp_len = temp.GetCount();
-        for(size_t j = 0; j < temp_len; ++j) {
-            int val = temp.Pop();
-            Stack::Push(val);
-        }
+    // recover
+    size_t temp_len = temp.GetCount();
+    for(size_t j = 0; j < temp_len; ++j) {
+        int val = temp.Pop();
+        Stack::Push(val);
     }
 
     return isFound;
