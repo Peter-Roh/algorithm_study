@@ -4,7 +4,7 @@
 
 int main(void) {
     // 후위표기법 stack 이용 계산 테스트
-    char expression[] = "245+*33/-"; // 17
+    const char expression[] = "245+*33/-"; // 17
 
     Stack stack = Stack();
 
