@@ -84,7 +84,7 @@ void SLL<T>::PrintNodes() const {
     while(p != nullptr) {
         std::cout << p->value;
 
-        if(p->next) {
+        if(p->next != nullptr) {
             std::cout << " -> ";
         }
 
