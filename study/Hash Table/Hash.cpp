@@ -5,14 +5,14 @@
 
 HashTable::HashTable()
     : mSize(0)
-{
-}
+{}
 
 unsigned long HashTable::DJB2(const char* str) const {
     unsigned long hash = 5381;
     int c;
 
-    while((c = *str++)) {
+    while(c != '\0') {
+        c = *str++;
         hash = ((hash << 5) + hash) + c;
     }
 
