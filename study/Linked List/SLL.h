@@ -7,6 +7,7 @@ class SLL {
         SLL();
         void AddNode(const T value);
         void InsertFront(const T value);
+        bool Insert(const int index, const T value);
         void Remove(const T value);
         void PrintNodes() const;
         bool Search(const T value) const;
@@ -56,6 +57,36 @@ void SLL<T>::InsertFront(const T value) {
 
     mHead = NewNode;
     ++mSize;
+}
+
+template<typename T>
+bool SLL<T>::Insert(const int index, const T value) {
+    Node* NewNode = new Node();
+    NewNode->value = value;
+    bool isFound = true;
+    
+    Node* p = mHead;
+    int i = 0;
+
+    while(i < index - 1) {
+        if(p->next == nullptr) {
+            isFound = false;
+            break;
+        }
+
+        p = p->next;
+        ++i;
+    }
+
+    if(index == 0) {
+        NewNode->next = mHead;
+        mHead = NewNode;
+    } else if(index > 0) {
+        NewNode->next = p->next;
+        p->next = NewNode;
+    }
+
+    return isFound;
 }
 
 template<typename T>

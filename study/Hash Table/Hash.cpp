@@ -7,23 +7,21 @@ HashTable::HashTable()
     : mSize(0)
 {}
 
-unsigned long HashTable::DJB2(const char* str) const {
+unsigned long HashTable::DJB2(const std::string& str) const {
     unsigned long hash = 5381;
-    int c;
 
-    while(c != '\0') {
-        c = *str++;
-        hash = ((hash << 5) + hash) + c;
+    for(int i = 0; i < static_cast<int>(str.size()); ++i) {
+        hash = ((hash << 5) + hash) + str[i];
     }
 
     return hash;
 }
 
-void HashTable::Add(const char* key, int value) {
+void HashTable::Add(const std::string& key, int value) {
     unsigned long hashValue = HashTable::DJB2(key);
 
     Node* newNode = new Node();
-    std::strcpy(newNode->key, key);
+    newNode->key = key;
     newNode->value = value;
     newNode->next = nullptr;
 
@@ -42,7 +40,7 @@ void HashTable::Add(const char* key, int value) {
     ++mSize;
 }
 
-void HashTable::Delete(const char* key) {
+void HashTable::Delete(const std::string& key) {
     unsigned long hashValue = HashTable::DJB2(key);
     int index = 0;
 
@@ -50,7 +48,7 @@ void HashTable::Delete(const char* key) {
         Node* p = mTable[hashValue % MAX_TABLE];
 
         while(p != nullptr) {
-            if(std::strcmp(p->key, key) == 0) {
+            if(p->key == key) {
                 Node* next = p->next;
                 delete p;
 
@@ -69,7 +67,7 @@ void HashTable::Delete(const char* key) {
     }
 }
 
-bool HashTable::Find(const char* key) const {
+bool HashTable::Find(const std::string& key) const {
     bool isFound = false;
     unsigned long hashValue = HashTable::DJB2(key);
 
@@ -77,7 +75,7 @@ bool HashTable::Find(const char* key) const {
         Node* p = mTable[hashValue % MAX_TABLE];
 
         while(p != nullptr) {
-            if(std::strcmp(p->key, key) == 0) {
+            if(p->key == key) {
                 isFound = true;
                 std::cout << "Value found - Key: " << p->key << ", Value: " << p->value << std::endl;
                 break;

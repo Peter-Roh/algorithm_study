@@ -20,7 +20,10 @@ int main() {
     std::cout << "Size of the list: " << size << std::endl;
 
     list->InsertFront(1);
-    list->PrintNodes(); // 1 -> 2 -> 5 -> 8
+
+    list->Insert(2, 3);
+
+    list->PrintNodes(); // 1 -> 2 -> 3 -> 5 -> 8
 
     return 0;
 }
